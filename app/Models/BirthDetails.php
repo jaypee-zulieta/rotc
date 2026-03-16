@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class BirthDetails extends Model
 {
@@ -17,12 +18,12 @@ class BirthDetails extends Model
     ];
 
 
-    public function studentCadet(): BelongsTo
+    public function studentCadet(): HasOne
     {
-        return $this->belongsTo(StudentCadet::class);
+        return $this->hasOne(StudentCadet::class);
     }
 
-    public function birthPlace(): BelongsTo
+    public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
     }

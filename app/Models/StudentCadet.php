@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class StudentCadet extends Model
@@ -22,8 +23,8 @@ class StudentCadet extends Model
         'sex'
     ];
 
-    public function birthDetails(): HasOne
+    public function birthDetails(): BelongsTo
     {
-        return $this->hasOne(BirthDetails::class);
+        return $this->belongsTo(BirthDetails::class);
     }
 }
