@@ -4,14 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class StudentCadet extends Model
 {
     /** @use HasFactory<\Database\Factories\StudentCadetFactory> */
     use HasFactory;
 
-    public function birthPlace()
+    protected $fillable = [
+        'student_number',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'suffix',
+        'complexion',
+        'blood_type',
+        'sex'
+    ];
+
+    public function birthDetails(): HasOne
     {
-        return $this->belongsTo(Address::class, 'address_id');
+        return $this->hasOne(BirthDetails::class);
     }
 }

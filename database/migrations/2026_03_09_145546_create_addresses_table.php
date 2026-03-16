@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('municipality_or_city');
             $table->string('province');
             $table->string('zip_code');
-            $table->timestamps();
         });
     }
 
