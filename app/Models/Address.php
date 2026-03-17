@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Address extends Model
@@ -26,5 +27,11 @@ class Address extends Model
     public function studentCadetsBornHere(): HasManyThrough
     {
         return $this->hasManyThrough(StudentCadet::class, BirthDetails::class);
+    }
+
+    public function registrations(): BelongsToMany
+    {
+        return $this->belongsToMany(Registration::class)
+            ->withPivot('is_permanent');
     }
 }

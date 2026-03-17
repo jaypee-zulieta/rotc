@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_cadet_id')->constrained()->onDelete('cascade');
-            $table->string('military_course');
-            $table->string('academic_course');
             $table->string('school');
+            $table->string('academic_course');
+            $table->string('military_course');
             $table->string('religion');
             $table->double('height_m');
             $table->double('weight_kg');
             $table->date('registration_date');
             $table->string('contact_number');
+            $table->enum('semester', ['1st Semester', '2nd Semester']);
+            $table->string('school_year');
             $table->boolean('is_willing_to_take_advance_course')->nullable();
         });
     }

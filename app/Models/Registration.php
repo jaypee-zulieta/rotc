@@ -3,9 +3,44 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Registration extends Model
 {
     //
     public $timestamps = false;
+
+    protected $fillable = [
+        'student_cadet_id',
+        'school',
+        'academic_course',
+        'military_course',
+        'religion',
+        'height_m',
+        'weight_kg',
+        'registration_date',
+        'contact_number',
+        'is_willing_to_take_advance_course'
+    ];
+
+    public function studentCadet()
+    {
+        return $this->belongsTo(StudentCadet::class);
+    }
+
+    public function addresses(): BelongsToMany
+    {
+        return $this->belongsToMany(Address::class)
+            ->withPivot('is_permanent');
+    }
+
+    public function permanentAddress()
+    {
+        return $this->addresses()->wherePivot('is_permanent', true)->first();
+    }
+
+    public function temporaryAddress()
+    {
+        return $this->addresses()->wherePivot('is_permanent', false)->first();
+    }
 }
