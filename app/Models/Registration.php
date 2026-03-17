@@ -43,4 +43,9 @@ class Registration extends Model
     {
         return $this->addresses()->wherePivot('is_permanent', false)->first();
     }
+
+    public function emergencyContacts()
+    {
+        return $this->hasMany(EmergencyContact::class);
+    }
 }

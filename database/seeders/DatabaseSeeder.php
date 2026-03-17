@@ -78,6 +78,41 @@ class DatabaseSeeder extends Seeder
 
             $registration->addresses()->attach($permanentAddress, ['is_permanent' => true]);
             $registration->addresses()->attach($temporaryAddress, ['is_permanent' => false]);
+
+            $emergencyContactAddress = Address::firstOrCreate([
+                "unit" => "lot 6",
+                "street_name" => "Ruby street",
+                "purok" => "Purok 12",
+                "barangay" => "Manga",
+                "municipality_or_city" => "Pagadian City",
+                "province" => "Zamboanga del Sur",
+                "zip_code" => "7016",
+            ]);
+
+            $emergencyContact = $registration->emergencyContacts()->create([
+                "first_name" => "Juan",
+                "middle_name" => "Dela",
+                "last_name" => "Cruz",
+                "relationship" => "Father",
+                "phone_number" => "09987654321",
+                "address_id" => $emergencyContactAddress->id
+            ]);
+
+            $father = $studentCadet->parentalFigures()->create([
+                "first_name" => "Juan",
+                "middle_name" => "Dela",
+                "last_name" => "Cruz",
+                "relationship" => "Father",
+                "occupation" => "Farmer"
+            ]);
+
+            $mother = $studentCadet->parentalFigures()->create([
+                "first_name" => "Maria",
+                "middle_name" => "Dela",
+                "last_name" => "Cruz",
+                "relationship" => "Mother",
+                "occupation" => "Housewife"
+            ]);
         });
     }
 }

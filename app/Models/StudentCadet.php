@@ -33,4 +33,9 @@ class StudentCadet extends Model
     {
         return $this->hasMany(Registration::class);
     }
+
+    public function parentalFigures(): HasMany
+    {
+        return $this->hasMany(ParentalFigure::class);
+    }
 }

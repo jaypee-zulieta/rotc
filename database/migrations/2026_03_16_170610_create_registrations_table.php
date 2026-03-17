@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('student_cadet_id')->constrained()->onDelete('cascade');
             $table->string('school');
             $table->string('academic_course');
-            $table->string('military_course');
+            $table->enum('military_course', ['Military Science 1', 'Military Science 2', 'Military Science 31', 'Military Science 32', 'Military Science 41', 'Military Science 42']);
             $table->string('religion');
             $table->double('height_m');
             $table->double('weight_kg');
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('semester', ['1st Semester', '2nd Semester']);
             $table->string('school_year');
             $table->boolean('is_willing_to_take_advance_course')->nullable();
+            $table->unique(['military_course', 'school_year', 'semester', 'student_cadet_id'], 'unique_registration');
         });
     }
 
