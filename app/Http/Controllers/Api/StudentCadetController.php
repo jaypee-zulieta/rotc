@@ -13,30 +13,20 @@ class StudentCadetController extends Controller
      */
     public function index(Request $request)
     {
-        $student_number = $request->query('student_number');
-        $first_name = $request->query('first_name');
-        $last_name = $request->query('last_name');
-        $blood_type = $request->query('blood_type');
+
+        $searchTerm = $request->query('search');
+        $studentNumber = $request->query('student_number');
         $sex = $request->query('sex');
+        $bloodType = $request->query('blood_type');
 
-        $studentCadets = StudentCadet::with('birthDetails.address')
-            ->when($first_name, function ($query, $first_name) {
-                $query->where('first_name', 'like', "%{$first_name}%");
-            })
-            ->when($blood_type, function ($query, $blood_type) {
-                $query->where('blood_type', $blood_type);
-            })
-            ->when($sex, function ($query, $sex) {
+        $studentCadets = StudentCadet::search($searchTerm)
+            ->when($studentNumber, function ($query) use ($studentNumber) {
+                $query->where('student_number', $studentNumber);
+            })->when($sex, function ($query) use ($sex) {
                 $query->where('sex', $sex);
-            })
-            ->when($student_number, function ($query, $student_number) {
-                $query->where('student_number', $student_number);
-            })
-            ->when($last_name, function ($query, $last_name) {
-                $query->where('last_name', 'like', "%{$last_name}%");
-            })
-            ->paginate(15);
-
+            })->when($bloodType, function ($query) use ($bloodType) {
+                $query->where('blood_type', $bloodType);
+            })->paginate();
         return response()->json($studentCadets);
     }
 

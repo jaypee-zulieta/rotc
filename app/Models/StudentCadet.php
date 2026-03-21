@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Scout\Searchable;
 
 class StudentCadet extends Model
 {
     /** @use HasFactory<\Database\Factories\StudentCadetFactory> */
     use HasFactory;
+    use Searchable;
 
     protected $fillable = [
         'student_number',
@@ -37,5 +38,19 @@ class StudentCadet extends Model
     public function parentalFigures(): HasMany
     {
         return $this->hasMany(ParentalFigure::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'student_number' => $this->id,
+            'first_name' => $this->first_name,
+            'middle_name' => $this->middle_name,
+            'last_name' => $this->last_name,
+            'suffix' => $this->suffix,
+            'complexion' => $this->complexion,
+            'blood_type' => $this->blood_type,
+            'sex' => $this->sex
+        ];
     }
 }

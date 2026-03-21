@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\StudentCadet;
+
 return [
 
     /*
@@ -138,11 +140,12 @@ return [
 
     'meilisearch' => [
         'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
-        'key' => env('MEILISEARCH_KEY'),
+        'key' => env('MEILISEARCH_KEY', null),
         'index-settings' => [
-            // 'users' => [
-            //     'filterableAttributes'=> ['id', 'name', 'email'],
-            // ],
+            StudentCadet::class => [
+                'filterableAttributes' => ['student_number', 'first_name', 'middle_name', 'last_name', 'suffix', 'complexion', 'blood_type', 'sex'],
+                'sortableAttributes' => ['created_at', 'updated_at'],
+            ],
         ],
     ],
 
