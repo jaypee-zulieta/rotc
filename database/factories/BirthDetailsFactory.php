@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Address;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StudentCadetRegistraionForm>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BirthDetails>
  */
-class StudentCadetRegistraionFormFactory extends Factory
+class BirthDetailsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +18,8 @@ class StudentCadetRegistraionFormFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "date_of_birth" => $this->faker->date(),
+            "address_id" => Address::factory(),
         ];
     }
 }
