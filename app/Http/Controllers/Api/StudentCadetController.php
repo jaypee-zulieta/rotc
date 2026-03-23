@@ -3,27 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\StudentCadetResource;
 use Illuminate\Http\Request;
-use App\Models\StudentCadet;
+use App\Services\StudentCadetService;
 
 class StudentCadetController extends Controller
 {
+
+    private StudentCadetService $studentCadetService;
+
+    public function __construct(StudentCadetService $studentCadetService)
+    {
+        $this->studentCadetService = $studentCadetService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $studentCadets = StudentCadet::search($request->query('search'))
-            ->query(function ($builder) use ($request) {
-                $studentNumber = $request->query('student_number');
-                $sex = $request->query('sex');
-
-                $builder->with('birthDetails.address')
-                    ->when($studentNumber, fn($q) => $q->where('student_number', $studentNumber))
-                    ->when($sex, fn($q) => $q->where('sex', $sex));
-            })->paginate(10);
-        return StudentCadetResource::collection($studentCadets);
+        return $this->studentCadetService->index($request);
     }
 
     /**
