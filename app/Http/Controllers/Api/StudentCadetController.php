@@ -11,24 +11,7 @@ class StudentCadetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-
-        $searchTerm = $request->query('search');
-        $studentNumber = $request->query('student_number');
-        $sex = $request->query('sex');
-        $bloodType = $request->query('blood_type');
-
-        $studentCadets = StudentCadet::search($searchTerm)
-            ->when($studentNumber, function ($query) use ($studentNumber) {
-                $query->where('student_number', $studentNumber);
-            })->when($sex, function ($query) use ($sex) {
-                $query->where('sex', $sex);
-            })->when($bloodType, function ($query) use ($bloodType) {
-                $query->where('blood_type', $bloodType);
-            })->paginate();
-        return response()->json($studentCadets);
-    }
+    public function index(Request $request) {}
 
     /**
      * Show the form for creating a new resource.
