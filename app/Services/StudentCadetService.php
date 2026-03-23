@@ -20,6 +20,13 @@ class StudentCadetService
                     ->when($studentNumber, fn($q) => $q->where('student_number', $studentNumber))
                     ->when($sex, fn($q) => $q->where('sex', $sex));
             })->paginate(10);
-        return StudentCadetResource::collection($studentCadets);
+
+        return response()->json([
+            'total' => $studentCadets->total(),
+            'per_page' => $studentCadets->perPage(),
+            'current_page' => $studentCadets->currentPage(),
+            'total_pages' => $studentCadets->lastPage(),
+            'data' => StudentCadetResource::collection($studentCadets->items())
+        ]);
     }
 }
