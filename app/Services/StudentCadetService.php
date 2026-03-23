@@ -2,9 +2,14 @@
 
 namespace App\Services;
 
+use App\Models\Address;
+use App\Models\BirthDetails;
+use App\Http\Requests\StoreStudentCadetRequest;
 use App\Http\Resources\StudentCadetResource;
 use App\Models\StudentCadet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class StudentCadetService
 {
@@ -28,6 +33,33 @@ class StudentCadetService
             'total_pages' => $studentCadets->lastPage(),
             'data' => StudentCadetResource::collection($studentCadets->items())
         ]);
+    }
+
+    public function store(StoreStudentCadetRequest $request)
+    {
+        $validated = $request->validated();
+        return DB::transaction(function () use ($validated) {
+            $birthPlace = Address::firstOrCreate($validated['birth_details']['birth_place']);
+
+            $birthDetails = BirthDetails::create([
+                "date_of_birth" => $validated['birth_details']['date_of_birth'],
+                "address_id" => $birthPlace->id
+            ]);
+
+            $studentCadet = StudentCadet::create([
+                "student_number" => $validated['student_number'],
+                "first_name" => $validated['first_name'],
+                "middle_name" => data_get($validated, 'middle_name'),
+                "last_name" => $validated['last_name'],
+                "suffix" => data_get($validated, 'suffix'),
+                "sex" => $validated['sex'],
+                "complexion" => data_get($validated, 'complexion'),
+                "blood_type" => data_get($validated, 'blood_type'),
+                "birth_details_id" => $birthDetails->id
+            ]);
+
+            return new StudentCadetResource($studentCadet);
+        });
     }
 
     public function show(StudentCadet $studentCadet)
