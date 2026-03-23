@@ -43,7 +43,7 @@ class StudentCadetController extends Controller
             "suffix" => "string|nullable",
             "complexion" => "nullable|string",
             "blood_type" => "nullable|string",
-            "sex" => "required|string",
+            "sex" => "required|string|in:Male,Female",
             "birth_details.date_of_birth" => "required|date",
             "birth_details.birth_place.unit" => "string|nullable",
             "birth_details.birth_place.street_name" => "string|nullable",
@@ -51,7 +51,7 @@ class StudentCadetController extends Controller
             "birth_details.birth_place.barangay" => "string|nullable",
             "birth_details.birth_place.municipality_or_city" => "required|string",
             "birth_details.birth_place.province" => "required|string",
-            "birth_details.birth_place.zip_code" => "required|string",
+            "birth_details.birth_place.zip_code" => "required|string|numeric",
             "birth_details.birth_place.telephone_number" => "string|nullable"
         ]);
 
