@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\StudentCadetService;
+use App\Models\StudentCadet;
 
 class StudentCadetController extends Controller
 {
@@ -42,9 +43,9 @@ class StudentCadetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(StudentCadet $studentCadet)
     {
-        //
+        return $this->studentCadetService->show($studentCadet);
     }
 
     /**

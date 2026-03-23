@@ -29,4 +29,9 @@ class StudentCadetService
             'data' => StudentCadetResource::collection($studentCadets->items())
         ]);
     }
+
+    public function show(StudentCadet $studentCadet)
+    {
+        return new StudentCadetResource($studentCadet);
+    }
 }
