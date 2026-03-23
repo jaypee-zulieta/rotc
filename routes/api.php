@@ -5,4 +5,4 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::resource('student-cadets', StudentCadetController::class, ['only' => ['index', 'show', 'store']]);
+Route::resource('student-cadets', StudentCadetController::class, ['only' => ['index', 'show', 'store', 'update']]);

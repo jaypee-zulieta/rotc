@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Address;
 use App\Models\BirthDetails;
 use App\Http\Requests\StoreStudentCadetRequest;
+use App\Http\Requests\UpdateStudentCadetRequest;
 use App\Http\Resources\StudentCadetResource;
 use App\Models\StudentCadet;
 use Illuminate\Http\Request;
@@ -65,5 +66,21 @@ class StudentCadetService
     public function show(StudentCadet $studentCadet)
     {
         return new StudentCadetResource($studentCadet);
+    }
+
+    public function update(UpdateStudentCadetRequest $request, StudentCadet $studentCadet)
+    {
+        $validated = $request->validated();
+
+
+        return DB::transaction(function () use ($validated, $studentCadet) {
+            $studentCadet->update($validated);
+            $birthDetails = $studentCadet->birthDetails;
+            $birthDetails->update(collect($validated['birth_details'])
+                ->except('birth_place')->toArray());
+            $birthDetails->address->update($validated['birth_details']['birth_place']);
+
+            return $studentCadet;
+        });
     }
 }
