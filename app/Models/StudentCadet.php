@@ -22,7 +22,8 @@ class StudentCadet extends Model
         'suffix',
         'complexion',
         'blood_type',
-        'sex'
+        'sex',
+        'birth_details_id'
     ];
 
     public function birthDetails(): BelongsTo

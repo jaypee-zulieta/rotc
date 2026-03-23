@@ -24,7 +24,7 @@ class StudentCadetResource extends JsonResource
             "complexion" => $this->complexion,
             "blood_type" => $this->blood_type,
             "sex" => $this->sex,
-            "birthDetails" => new BirthDetailsResource($this->birthDetails)
+            "birth_details" => new BirthDetailsResource($this->birthDetails)
         ];
     }
 }

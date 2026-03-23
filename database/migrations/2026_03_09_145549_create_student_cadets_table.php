@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('suffix')->nullable();
-            $table->string('complexion');
-            $table->string('blood_type');
+            $table->string('complexion')->nullable();
+            $table->string('blood_type')->nullable();
             $table->enum('sex', ['Male', 'Female']);
             $table->foreignId('birth_details_id')->constrained()->onDelete('cascade')->unique();
             $table->timestamps();
