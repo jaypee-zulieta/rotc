@@ -40,7 +40,7 @@ class StudentCadetService
     {
         $validated = $request->validated();
         return DB::transaction(function () use ($validated) {
-            $birthPlace = Address::firstOrCreate($validated['birth_details']['birth_place']);
+            $birthPlace = Address::create($validated['birth_details']['birth_place']);
 
             $birthDetails = BirthDetails::create([
                 "date_of_birth" => $validated['birth_details']['date_of_birth'],
