@@ -76,11 +76,13 @@ class StudentCadetService
         return DB::transaction(function () use ($validated, $studentCadet) {
             $studentCadet->update($validated);
             $birthDetails = $studentCadet->birthDetails;
+
             $birthDetails->update(collect($validated['birth_details'])
                 ->except('birth_place')->toArray());
+
             $birthDetails->address->update($validated['birth_details']['birth_place']);
 
-            return $studentCadet;
+            return new StudentCadetResource($studentCadet);
         });
     }
 }
