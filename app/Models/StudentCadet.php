@@ -43,7 +43,7 @@ class StudentCadet extends Model
     public function toSearchableArray()
     {
         return [
-            'student_number' => $this->id,
+            'student_number' => $this->student_number,
             'first_name' => $this->first_name,
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,
