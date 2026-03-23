@@ -21,7 +21,8 @@ class Address extends Model
         'barangay',
         'municipality_or_city',
         'province',
-        'zip_code'
+        'zip_code',
+        "telephone_number"
     ];
 
     public function studentCadetsBornHere(): HasManyThrough
