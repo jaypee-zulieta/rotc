@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Registration extends Model
 {
+    use HasFactory;
     //
     public $timestamps = false;
 
@@ -20,6 +22,8 @@ class Registration extends Model
         'weight_kg',
         'registration_date',
         'contact_number',
+        'semester',
+        'school_year',
         'is_willing_to_take_advance_course'
     ];
 
