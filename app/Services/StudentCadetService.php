@@ -40,7 +40,7 @@ class StudentCadetService
     {
         $validated = $request->validated();
         return DB::transaction(function () use ($validated) {
-            $birthPlace = Address::create($validated['birth_details']['birth_place']);
+            $birthPlace = Address::firstOrCreate($validated['birth_details']['birth_place']);
 
             $birthDetails = BirthDetails::create([
                 "date_of_birth" => $validated['birth_details']['date_of_birth'],
@@ -77,10 +77,13 @@ class StudentCadetService
             $studentCadet->update($validated);
             $birthDetails = $studentCadet->birthDetails;
 
-            $birthDetails->update(collect($validated['birth_details'])
-                ->except('birth_place')->toArray());
+            $birthPlace = $validated['birth_details']['birth_place'];
+            $address = Address::firstOrCreate($birthPlace);
 
-            $birthDetails->address->update($validated['birth_details']['birth_place']);
+            $birthDetails->update([
+                "date_of_birth" => $birthDetails->date_of_birth,
+                "address_id" => $address->id
+            ]);
 
             return new StudentCadetResource($studentCadet);
         });
