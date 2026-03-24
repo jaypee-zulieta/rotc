@@ -85,4 +85,13 @@ class StudentCadetService
             return new StudentCadetResource($studentCadet);
         });
     }
+
+    public function destroy(StudentCadet $studentCadet)
+    {
+
+        DB::transaction(function () use ($studentCadet) {
+            $birthDetails = $studentCadet->birthDetails;
+            BirthDetails::destroy($birthDetails->id);
+        });
+    }
 }
