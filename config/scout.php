@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\StudentCadet;
+use App\Models\Registration;
 
 return [
 
@@ -146,6 +147,10 @@ return [
                 'filterableAttributes' => ['student_number', 'first_name', 'middle_name', 'last_name', 'suffix', 'complexion', 'blood_type', 'sex'],
                 'sortableAttributes' => ['created_at', 'updated_at'],
             ],
+            Registration::class => [
+                "filterableAttributes" => ['school', 'academic_course', 'military_course', 'religion', 'registration_date', 'contact_number', 'semester', 'school_year'],
+                "sortableAttributes" => ['registration_date', 'height_m', 'weight_kg']
+            ]
         ],
     ],
 

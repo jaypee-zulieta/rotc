@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\RegistrationService;
-use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class RegistrationController extends Controller
 {
@@ -19,7 +18,7 @@ class RegistrationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(FacadesRequest $request)
+    public function index(Request $request)
     {
         return $this->registrationService->index($request);
     }

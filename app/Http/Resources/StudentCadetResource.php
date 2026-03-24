@@ -15,7 +15,7 @@ class StudentCadetResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
+            "cadet_id" => $this->id,
             "student_number" => $this->student_number,
             "first_name" => $this->first_name,
             "middle_name" => $this->middle_name,

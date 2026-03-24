@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laravel\Scout\Searchable;
 
 class Registration extends Model
 {
+    use Searchable;
     use HasFactory;
     //
     public $timestamps = false;
@@ -51,5 +53,21 @@ class Registration extends Model
     public function emergencyContacts()
     {
         return $this->hasMany(EmergencyContact::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'school' => $this->school,
+            'academic_course' => $this->academic_course,
+            'military_course' => $this->military_course,
+            'religion' => $this->religion,
+            'height_m' => $this->height_m,
+            'weight_kg' => $this->weight_kg,
+            'registration_date' => $this->registration_date,
+            'contact_number' => $this->contact_number,
+            'semester' => $this->semester,
+            "school_year" => $this->school_year
+        ];
     }
 }

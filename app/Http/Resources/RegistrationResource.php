@@ -15,6 +15,7 @@ class RegistrationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            "registration_id" => $this->id,
             "cadet_information" => new StudentCadetResource($this->studentCadet),
             "school" => $this->school,
             "academic_course" => $this->academic_course,
