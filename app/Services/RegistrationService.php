@@ -17,7 +17,13 @@ class RegistrationService
                 $builder->with('studentCadet.birthDetails.address');
             })
             ->paginate(10);
-        return RegistrationResource::collection($registrations);
+        return response()->json([
+            'total' => $registrations->total(),
+            'per_page' => $registrations->perPage(),
+            'current_page' => $registrations->currentPage(),
+            'total_pages' => $registrations->lastPage(),
+            'data' => RegistrationResource::collection($registrations->items())
+        ]);
     }
 
     public function show(Registration $registration)
