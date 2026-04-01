@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRegistrationRequest;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use App\Services\RegistrationService;
@@ -27,9 +28,9 @@ class RegistrationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRegistrationRequest $request)
     {
-        //
+        return $this->registrationService->store($request);
     }
 
     /**

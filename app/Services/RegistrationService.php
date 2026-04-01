@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\StoreRegistrationRequest;
 use App\Http\Resources\RegistrationResource;
 use Illuminate\Http\Request;
 use App\Models\Registration;
@@ -29,5 +30,11 @@ class RegistrationService
     {
         $registration->load('studentCadet.birthDetails.address');
         return new RegistrationResource($registration);
+    }
+
+    public function store(StoreRegistrationRequest $request)
+    {
+        $validated = $request->validated();
+        return $validated;
     }
 }
