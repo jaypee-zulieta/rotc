@@ -148,7 +148,7 @@ return [
                 'sortableAttributes' => ['created_at', 'updated_at'],
             ],
             Registration::class => [
-                "filterableAttributes" => ['school', 'academic_course', 'military_course', 'religion', 'registration_date', 'contact_number', 'semester', 'school_year'],
+                "filterableAttributes" => ['studentCadet.student_number', 'studentCadet.first_name', 'studentCadet.middle_name', 'studentCadet.last_name', 'studentCadet.suffix', 'studentCadet.complexion', 'studentCadet.blood_type', 'studentCadet.sex', 'school', 'academic_course', 'military_course', 'religion', 'registration_date', 'contact_number', 'semester', 'school_year'],
                 "sortableAttributes" => ['registration_date', 'height_m', 'weight_kg']
             ]
         ],

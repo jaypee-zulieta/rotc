@@ -58,6 +58,15 @@ class Registration extends Model
     public function toSearchableArray()
     {
         return [
+            'student_cadet' => [
+                "student_number" => $this->studentCadet->student_number,
+                "first_name" => $this->studentCadet->first_name,
+                "middle_name" => $this->studentCadet->middle_name,
+                "last_name" => $this->studentCadet->last_name,
+                "suffix" => $this->studentCadet->suffix,
+                "complexion" => $this->studentCadet->complexion,
+                "blood_type" => $this->studentCadet->blood_type,
+            ],
             'school' => $this->school,
             'academic_course' => $this->academic_course,
             'military_course' => $this->military_course,
