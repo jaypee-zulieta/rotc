@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Http\Resources\RegistrationResource;
 use Illuminate\Http\Request;
 use App\Models\Registration;
-use App\Models\StudentCadet;
 
 class RegistrationService
 {
