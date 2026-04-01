@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use App\Services\RegistrationService;
 
@@ -34,10 +35,11 @@ class RegistrationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Registration $registration)
     {
-        //
+        return $this->registrationService->show($registration);
     }
+
 
     /**
      * Update the specified resource in storage.

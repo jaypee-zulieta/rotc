@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Resources\RegistrationResource;
 use Illuminate\Http\Request;
 use App\Models\Registration;
+use App\Models\StudentCadet;
 
 class RegistrationService
 {
@@ -17,5 +18,11 @@ class RegistrationService
             })
             ->paginate(10);
         return RegistrationResource::collection($registrations);
+    }
+
+    public function show(Registration $registration)
+    {
+        $registration->load('studentCadet.birthDetails.address');
+        return new RegistrationResource($registration);
     }
 }
