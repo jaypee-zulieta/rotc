@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('contact_number');
             $table->enum('semester', ['1st Semester', '2nd Semester']);
             $table->string('school_year');
-            $table->boolean('is_willing_to_take_advance_course')->nullable();
+            $table->boolean('is_willing_to_take_advance_course')->default(false);
             $table->unique(['military_course', 'school_year', 'semester', 'student_cadet_id'], 'unique_registration');
         });
     }
