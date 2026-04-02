@@ -64,7 +64,7 @@ class StoreRegistrationRequest extends FormRequest
                         ->where('student_cadet_id', $this->input('student_cadet_id'));
                 }),
             ],
-            "religion" => "nullable|string",
+            "religion" => "required|string",
             "height_m" => "required|numeric",
             "weight_kg" => "required|numeric",
             "contact_number" => "required|string",
