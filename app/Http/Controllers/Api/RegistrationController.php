@@ -53,8 +53,8 @@ class RegistrationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Registration $registration)
     {
-        //
+        return $this->registrationService->delete($registration);
     }
 }

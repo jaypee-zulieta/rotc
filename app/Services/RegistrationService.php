@@ -81,4 +81,9 @@ class RegistrationService
             return new RegistrationResource($registration);
         });
     }
+
+    public function delete(Registration $registration)
+    {
+        $registration->delete();
+    }
 }
