@@ -68,27 +68,6 @@ class StudentCadetService
         return new StudentCadetResource($studentCadet);
     }
 
-    public function update(UpdateStudentCadetRequest $request, StudentCadet $studentCadet)
-    {
-        $validated = $request->validated();
-
-
-        return DB::transaction(function () use ($validated, $studentCadet) {
-            $studentCadet->update($validated);
-            $birthDetails = $studentCadet->birthDetails;
-
-            $birthPlace = $validated['birth_details']['birth_place'];
-            $address = Address::firstOrCreate($birthPlace);
-
-            $birthDetails->update([
-                "date_of_birth" => $birthDetails->date_of_birth,
-                "address_id" => $address->id
-            ]);
-
-            return new StudentCadetResource($studentCadet);
-        });
-    }
-
     public function destroy(StudentCadet $studentCadet)
     {
 

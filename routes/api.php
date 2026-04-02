@@ -9,9 +9,8 @@ Route::resource('student-cadets', StudentCadetController::class, ['only' => [
     'index',
     'show',
     'store',
-    'update',
     'destroy'
 ]]);
 
 
-Route::resource('registrations', RegistrationController::class, ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+Route::resource('registrations', RegistrationController::class, ['only' => ['index', 'show', 'store', 'destroy']]);
