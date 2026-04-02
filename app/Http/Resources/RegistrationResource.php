@@ -17,7 +17,7 @@ class RegistrationResource extends JsonResource
         return [
             "registration_id" => $this->id,
             "registration_date" => $this->registration_date,
-            "cadet_information" => new StudentCadetResource($this->studentCadet),
+            "student_cadet_information" => new StudentCadetResource($this->studentCadet),
             "school" => $this->school,
             "academic_course" => $this->academic_course,
             "military_course" => $this->military_course,

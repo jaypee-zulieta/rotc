@@ -18,7 +18,7 @@ class StoreRegistrationRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $studentCadetId = StudentCadet::where('student_number', $this->input('cadet_information.student_number'))
+        $studentCadetId = StudentCadet::where('student_number', $this->input('student_cadet_information.student_number'))
             ->value('id');
 
         $this->merge([
@@ -35,23 +35,23 @@ class StoreRegistrationRequest extends FormRequest
     {
         return [
             "registration_date" => "required|date",
-            "cadet_information.student_number" => "required|string",
-            "cadet_information.first_name" => "required|string",
-            "cadet_information.last_name" => "required|string",
-            "cadet_information.middle_name" => "nullable|string",
-            "cadet_information.suffix" => "nullable|string",
-            "cadet_information.complexion" => "nullable|string",
-            "cadet_information.blood_type" => "nullable|string",
-            "cadet_information.sex" => "required|string|in:Male,Female",
-            "cadet_information.birth_details.date_of_birth" => "required|date",
-            "cadet_information.birth_details.birth_place.unit" => "nullable|string",
-            "cadet_information.birth_details.birth_place.street_name" => "nullable|string",
-            "cadet_information.birth_details.birth_place.purok" => "nullable|string",
-            "cadet_information.birth_details.birth_place.barangay" => "nullable|string",
-            "cadet_information.birth_details.birth_place.municipality_or_city" => "required|string",
-            "cadet_information.birth_details.birth_place.province" => "required|string",
-            "cadet_information.birth_details.birth_place.zip_code" => "nullable|string",
-            "cadet_information.birth_details.birth_place.telephone_number" => "nullable|string",
+            "student_cadet_information.student_number" => "required|string",
+            "student_cadet_information.first_name" => "required|string",
+            "student_cadet_information.last_name" => "required|string",
+            "student_cadet_information.middle_name" => "nullable|string",
+            "student_cadet_information.suffix" => "nullable|string",
+            "student_cadet_information.complexion" => "nullable|string",
+            "student_cadet_information.blood_type" => "nullable|string",
+            "student_cadet_information.sex" => "required|string|in:Male,Female",
+            "student_cadet_information.birth_details.date_of_birth" => "required|date",
+            "student_cadet_information.birth_details.birth_place.unit" => "nullable|string",
+            "student_cadet_information.birth_details.birth_place.street_name" => "nullable|string",
+            "student_cadet_information.birth_details.birth_place.purok" => "nullable|string",
+            "student_cadet_information.birth_details.birth_place.barangay" => "nullable|string",
+            "student_cadet_information.birth_details.birth_place.municipality_or_city" => "required|string",
+            "student_cadet_information.birth_details.birth_place.province" => "required|string",
+            "student_cadet_information.birth_details.birth_place.zip_code" => "nullable|string",
+            "student_cadet_information.birth_details.birth_place.telephone_number" => "nullable|string",
             "school" => "required|string",
             "academic_course" => "required|string",
             "military_course" => [

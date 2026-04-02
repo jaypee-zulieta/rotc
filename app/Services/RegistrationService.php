@@ -43,23 +43,23 @@ class RegistrationService
         return DB::transaction(function () use ($validated) {
 
             // If it finds an address with the same details it will use that, if it doesn't it will make a new record
-            $address = Address::firstOrCreate($validated['cadet_information']['birth_details']['birth_place']);
+            $address = Address::firstOrCreate($validated['student_cadet_information']['birth_details']['birth_place']);
 
             $birthDetails = BirthDetails::firstOrCreate([
-                "date_of_birth" => $validated['cadet_information']['birth_details']['date_of_birth'],
+                "date_of_birth" => $validated['student_cadet_information']['birth_details']['date_of_birth'],
                 "address_id" => $address->id
             ]);
 
             $studentCadet = StudentCadet::updateOrCreate([
-                "student_number" => $validated['cadet_information']['student_number']
+                "student_number" => $validated['student_cadet_information']['student_number']
             ], [
-                "first_name" => $validated['cadet_information']['first_name'],
-                "middle_name" => data_get($validated['cadet_information'], 'middle_name'),
-                "last_name" => $validated['cadet_information']['last_name'],
-                "suffix" => data_get($validated['cadet_information'], 'suffix'),
-                "complexion" => data_get($validated['cadet_information'], 'complexion'),
-                "blood_type" => data_get($validated['cadet_information'], 'blood_type'),
-                "sex" => $validated['cadet_information']['sex'],
+                "first_name" => $validated['student_cadet_information']['first_name'],
+                "middle_name" => data_get($validated['student_cadet_information'], 'middle_name'),
+                "last_name" => $validated['student_cadet_information']['last_name'],
+                "suffix" => data_get($validated['student_cadet_information'], 'suffix'),
+                "complexion" => data_get($validated['student_cadet_information'], 'complexion'),
+                "blood_type" => data_get($validated['student_cadet_information'], 'blood_type'),
+                "sex" => $validated['student_cadet_information']['sex'],
                 "birth_details_id" => $birthDetails->id,
             ]);
 
