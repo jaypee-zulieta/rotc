@@ -65,6 +65,7 @@ class StudentCadetService
 
     public function show(StudentCadet $studentCadet)
     {
+        $studentCadet->load('birthDetails.address');
         return new StudentCadetResource($studentCadet);
     }
 
